@@ -1,7 +1,9 @@
 import {resultKMeans} from './kMeans.js'
 import {generateDataAndPlot} from './LinearRegression'
+import {test} from "./classificator";
 
 console.log(resultKMeans)
+console.log(test)
 
 const numPoints = 50;
 const trueSlope = 2;

@@ -12,6 +12,7 @@
     "@babel/core": "^7.21.4",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
+    "classificator": "^0.3.4",
     "data-forge": "^1.10.0",
     "opn": "^6.0.0",
     "plotly.js": "^2.21.0",
