@@ -1,42 +1,53 @@
-const Plotly = require("plotly.js-dist");
-const {LinearRegression} = require("shaman");
+import { LinearRegression } from 'shaman';
+import Plotly from 'plotly.js-dist';
 
-const X = [1, 2, 3, 4, 5];
-const Y = [2, 2, 3, 3, 5];
+export const generateDataAndPlot = (numPoints, trueSlope, trueIntercept) => {
+    // Generate random data points
+    const X = [];
+    const Y = [];
+    for (let i = 0; i < numPoints; i++) {
+        const x = Math.random() * 10;
+        const y = trueSlope * x + trueIntercept + (Math.random() - 0.5) * 2; // Add random noise
+        X.push(x);
+        Y.push(y);
+    }
 
-const lr = new LinearRegression(X,Y);
+    // Perform linear regression
+    const lr = new LinearRegression(X, Y);
+    lr.train(function(err) {
+        if (err) { throw err; }
 
-export const resultLinearRegression = lr.train(function(err) {
-    if (err) { throw err; }
+        // Get the predicted values for X
+        const predictedY = X.map(x => lr.predict(x));
 
-    // you can now start using lr.predict:
-    const predictedY = X.map(x => lr.predict(x));
+        const trace1 = {
+            x: X,
+            y: Y,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Data Points'
+        };
 
-    const trace1 = {
-        x: X,
-        y: Y,
-        mode: 'markers',
-        type: 'scatter',
-        name: 'Data Points'
-    };
+        const trace2 = {
+            x: X,
+            y: predictedY,
+            mode: 'lines',
+            type: 'scatter',
+            name: 'Linear Regression Line'
+        };
 
-    const trace2 = {
-        x: X,
-        y: predictedY,
-        mode: 'lines',
-        type: 'scatter',
-        name: 'Linear Regression Line'
-    };
+        const layout = {
+            title: 'Linear Regression with Plotly and Shaman',
+            xaxis: { title: 'X' },
+            yaxis: { title: 'Y' }
+        };
 
-    const layout = {
-        title: 'Linear Regression with Plotly and Shaman',
-        xaxis: { title: 'X' },
-        yaxis: { title: 'Y' }
-    };
+        const data = [trace1, trace2];
 
-    const data = [trace1, trace2];
+        let div = document.getElementById('linear');
+        Plotly.newPlot(div, data, layout);
+    });
+};
 
-    let div = document.getElementById('linear');
-    Plotly.newPlot(div, data, layout);
-});
+// Call the function with desired parameters
 
