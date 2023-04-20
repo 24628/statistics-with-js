@@ -1,13 +1,21 @@
 import { LinearRegression } from 'shaman';
 import Plotly from 'plotly.js-dist';
 
-export const generateDataAndPlot = (numPoints, trueSlope, trueIntercept) => {
+export const generateDataAndPlot = (numPoints, trueSlope, trueIntercept, numOutliers, outlierRange ) => {
     // Generate random data points
     const X = [];
     const Y = [];
     for (let i = 0; i < numPoints; i++) {
         const x = Math.random() * 10;
         const y = trueSlope * x + trueIntercept + (Math.random() - 0.5) * 2; // Add random noise
+        X.push(x);
+        Y.push(y);
+    }
+
+    // Generate outliers
+    for (let i = 0; i < numOutliers; i++) {
+        const x = Math.random() * outlierRange; // Outliers are generated within a specified range
+        const y = Math.random() * outlierRange * 5; // Outliers have larger y-values
         X.push(x);
         Y.push(y);
     }

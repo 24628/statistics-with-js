@@ -3,8 +3,10 @@ import {generateDataAndPlot} from './LinearRegression'
 
 console.log(resultKMeans)
 
-const numPoints = 50; // Number of data points to generate
-const trueSlope = 2; // True slope of the linear regression line
-const trueIntercept = 1; // True intercept of the linear regression line
+const numPoints = 50;
+const trueSlope = 2;
+const trueIntercept = 1;
+const numOutliers = 2;
+const outlierRange  = 5;
 
-generateDataAndPlot(numPoints, trueSlope, trueIntercept);
+generateDataAndPlot(numPoints, trueSlope, trueIntercept, numOutliers, outlierRange);
