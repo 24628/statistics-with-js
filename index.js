@@ -1,3 +1,5 @@
-import {result} from './kMeans.js'
+import {resultKMeans} from './kMeans.js'
+import {resultLinearRegression} from './LinearRegression'
 
-console.log(result)
+console.log(resultKMeans)
+console.log(resultLinearRegression)

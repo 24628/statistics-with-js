@@ -13,7 +13,7 @@ const kMeans = new KMeans(5, {
 });
 
 
-export const result = kMeans.cluster(data, function(err, clusters, centroids) {
+export const resultKMeans = kMeans.cluster(data, function(err, clusters, centroids) {
     if (err) { throw err; }
 
     let dataArr = [];
@@ -55,8 +55,8 @@ export const result = kMeans.cluster(data, function(err, clusters, centroids) {
     };
 
     dataArr.push(trace2);
-    let TESTER = document.getElementById('tester');
-    Plotly.newPlot(TESTER, dataArr, layout);
+    let div = document.getElementById('kMeans');
+    Plotly.newPlot(div, dataArr, layout);
 });
 
 

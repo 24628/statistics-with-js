@@ -9,7 +9,8 @@
 </head>
 <body>
 
-<div id="tester" style="width:800px;height:800px;"></div>
+<div id="kMeans" style="width:800px;height:800px;"></div>
+<div id="linear" style="width:800px;height:800px;"></div>
 
 </body>
 
